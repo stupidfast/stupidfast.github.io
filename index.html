@@ -1,1 +1,40 @@
+<!DOCTYPE html>
+<html>
 
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style id="style">
+
+    </style>
+
+  </head>
+
+  <body id="body">
+    Data here: 
+
+    <table id="table" border="1" style="border-collapse: collapse;"></table>
+    <script>
+      $.ajax({
+        url: 'https://docs.google.com/spreadsheets/d/16ASTzJs_relHeFrAUHYA3qA9yEjQ73WX85S0ruWXA4M/htmlembed?single=true&gid=446758212&range=a1:b2&widget=false&chrome=false',
+        success: function(data) {
+       //console.log(data);
+       var theader = data.split("<table");
+       theader[1] = '<table' + theader[1]
+           
+       var tbody = theader[1].split("</table>")
+       tbody[0] = tbody[0] + '</table>' 
+        //   console.log(tbody[0])  
+          var css = document.getElementById("body");
+          css.innerHTML += tbody[0];
+
+         
+       
+        }
+      });
+
+    </script>
+  </body>
+
+</html>
